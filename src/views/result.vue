@@ -34,7 +34,7 @@
 		    <el-tab-pane label="歌单" name="list">
 				<div class="imgcontent">
 					<ul>
-						<li v-for="(item,index) in songlists" :key="index">
+						<li v-for="(item,index) in songlists" :key="index" @click="toplaylist(item.id)">
 							<img :src="item.coverImgUrl" alt="">
 							<span>{{item.name}}</span>
 							<i class="el-icon-video-play"></i>
@@ -165,6 +165,9 @@
 				}
 			},
 		    methods: {
+				toplaylist(id){
+					this.$router.push('/playlists?key='+id)
+				},
 		      handleClick(tab, event) {
 		        // console.log(tab, event);
 		      },

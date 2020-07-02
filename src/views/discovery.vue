@@ -8,7 +8,7 @@
 		  <h2>推荐歌单</h2>
 		  <div class="imgcontent">
 			  <ul>
-			  	<li v-for="(item,index) in list" :key="index">
+			  	<li v-for="(item,index) in list" :key="index" @click="toplaylist(item.id)">
 					<div class="name">{{item.name}}</div>
 					<img :src="item.picUrl" alt="">
 					<span>{{item.copywriter}}</span>
@@ -19,7 +19,7 @@
 		  <h2>最新音乐</h2>
 		  <div class="newsongs">
 			  <ul>
-			  	<li v-for="(item,index) in newsongs" :key="index">
+			  	<li v-for="(item,index) in newsongs" :key="index" @click="toplaylist(item.id)">
 					<i class="el-icon-video-play" @click="playmusic(item.id)"></i>
 					<img :src="item.picUrl" alt="">
 					<span>{{item.name}}</span>
@@ -82,7 +82,6 @@
 			}).then(res=>{
 				// console.log(res)
 				this.newsongs=res.data.result;
-				// console.log(this.newsongs)
 			}),
 			//推荐mv
 			Axios({
@@ -94,6 +93,9 @@
 			})
 		},
 		methods:{
+			toplaylist(id){
+				this.$router.push('/playlists?key='+id)
+			},
 			playmusic(id){
 				// console.log(id)
 				Axios({

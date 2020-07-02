@@ -26,7 +26,7 @@
 		</ul>
 		<div class="imgcontent">
 			<ul>
-				<li v-for="(item,index) in list" :key="index">
+				<li v-for="(item,index) in list" :key="index" @click="toplaylist(item.id)">
 					<img :src="item.coverImgUrl" alt="">
 					<span>{{item.name}}</span>
 					<i class="el-icon-video-play"></i>
@@ -72,6 +72,9 @@
 			this.listData()
 		},
 		methods:{
+			toplaylist(id){
+				this.$router.push('/playlists?key='+id)
+			},
 			topData(){
 				axios({
 					url:"https://autumnfish.cn/top/playlist/highquality",
